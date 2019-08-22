@@ -4,13 +4,15 @@ import {HomeComponent} from './home.component';
 import {HeaderComponent} from './header/header.component';
 import {TransactionService} from './transaction.service';
 import {SharedModule} from '../shared/shared.module';
+import { DetailsComponent } from './details/details.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import {SharedModule} from '../shared/shared.module';
     TransactionService
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    DetailsComponent
   ]
 })
 export class HomeModule { }
