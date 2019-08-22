@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TransactionService} from '../transaction.service';
 
 @Component({
   selector: 'wallet-header',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(public transactionService: TransactionService) {}
+
   clearWallet(): void {
-    // TODO: Implement method to clear wallet data
+    this.transactionService.clearTransactions();
   }
 }
