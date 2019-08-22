@@ -12,6 +12,9 @@ import {HeaderComponent} from './header/header.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    HomeComponent
   ]
 })
 export class HomeModule { }
