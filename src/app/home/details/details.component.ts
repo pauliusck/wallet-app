@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TransactionService} from '../transaction.service';
 
@@ -8,18 +8,19 @@ import {TransactionService} from '../transaction.service';
 })
 export class DetailsComponent {
   walletForm: FormGroup = this.fb.group({
-    amount: [null, [Validators.required, Validators.nullValidator]]
+    amount: [null, Validators.required]
   });
   totalAmountError: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private transactionService: TransactionService) {}
+              private transactionService: TransactionService) {
+  }
 
   performTransaction(): void {
+    this.totalAmountError = false;
     if (this.walletForm.valid && this.walletForm.value.amount !== 0) {
       const value = Number(this.walletForm.value.amount.toFixed(2)); // Trim value to 2 decimal points
       if (this.transactionService.getTotalValue() + value >= 0) {
-        this.totalAmountError = false;
         const transaction = {
           date: new Date(Date.now()).toString(),
           amount: this.walletForm.value.amount
@@ -30,5 +31,9 @@ export class DetailsComponent {
         this.totalAmountError = true;
       }
     }
+  }
+
+  get f() {
+    return this.walletForm.controls;
   }
 }

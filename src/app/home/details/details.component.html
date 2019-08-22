@@ -5,11 +5,20 @@
     <form [formGroup]="walletForm" class="form-group row no-gutters justify-content-center">
       <div class="col-4">
         <input type="number" formControlName="amount" id="amount" class="form-control">
+        <div *ngIf="walletForm?.invalid && (f.amount?.dirty || f.amount?.touched) || totalAmountError"
+             class="alert alert-danger">
+          <div *ngIf="f.amount?.errors?.required">
+            Amount is required.
+          </div>
+          <div *ngIf="totalAmountError">
+            You do not have enough money.
+          </div>
+        </div>
       </div>
     </form>
     <button type="button" class="btn btn-info"
             (click)="performTransaction()">
-      {{walletForm?.value?.amount > 0? 'Deposit': 'Withdraw'}}
+      {{walletForm?.value?.amount >= 0? 'Deposit': 'Withdraw'}}
     </button>
   </div>
 </div>
