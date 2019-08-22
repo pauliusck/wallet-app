@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './details.component.html'
 })
 export class DetailsComponent {
+
+  performTransaction(): void {
+    // TODO: Implement performTransaction method
+  }
 }
