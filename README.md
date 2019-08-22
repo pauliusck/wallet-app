@@ -1,6 +1,23 @@
 # WalletApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
+This is a wallet application that allows you to deposit of withdraw amounts to and from your wallet and stores data in your browser. Data is stored until it is cleared by either clicking Reset button or cleaning local storage in a browser. 
+There is just one input field to add or remove money by using positive or negative amounts. Once amount is added to a wallet, grand total amount is updated and transaction appears in a history list. 
+
+## Instalation
+
+```
+git clone https://github.com/pauliusck/wallet.git
+cd wallet
+npm install
+```
+
+## Usage
+
+```
+cd wallet
+ng serve
+```
+Use URL `localhost:4200` in your browser or URL displayed in your terminal
 
 ## Development server
 
