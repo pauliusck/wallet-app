@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {HomeComponent} from './home.component';
 import {HeaderComponent} from './header/header.component';
 import {TransactionService} from './transaction.service';
+import {SharedModule} from '../shared/shared.module';
 
 
 
@@ -12,7 +13,8 @@ import {TransactionService} from './transaction.service';
     HeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   providers: [
     TransactionService

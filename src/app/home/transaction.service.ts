@@ -1,8 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {LocalStorageService} from '../model/local-storage.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TransactionService {
+  walletKey = 'wallet-transactions';
+
+  constructor(private localStorageService: LocalStorageService) {
+  }
+
   clearTransactions(): void {
-    // TODO: implement method to clear transactions
+    this.localStorageService.removeData(this.walletKey);
   }
 }
