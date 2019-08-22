@@ -2,9 +2,14 @@
   <div class="card-body">
     <h5 class="card-title">Deposit or withdraw money to or from your wallet</h5>
     <p class="card-text text-secondary">Use negative amount to withdraw money</p>
+    <form [formGroup]="walletForm" class="form-group row no-gutters justify-content-center">
+      <div class="col-4">
+        <input type="number" formControlName="amount" id="amount" class="form-control">
+      </div>
+    </form>
     <button type="button" class="btn btn-info"
             (click)="performTransaction()">
-      {{true? 'Deposit': 'Withdraw'}}
+      {{walletForm?.value?.amount > 0? 'Deposit': 'Withdraw'}}
     </button>
   </div>
 </div>
