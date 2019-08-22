@@ -6,11 +6,16 @@ import {LocalStorageService} from '../model/local-storage.service';
 })
 export class TransactionService {
   walletKey = 'wallet-transactions';
+  public totalAmount = 0;
 
   constructor(private localStorageService: LocalStorageService) {
   }
 
   clearTransactions(): void {
     this.localStorageService.removeData(this.walletKey);
+  }
+
+  getTotalValue(): number {
+    return this.totalAmount;
   }
 }
