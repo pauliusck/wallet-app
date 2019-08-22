@@ -1,12 +1,15 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TransactionService} from '../transaction.service';
+import {Observable} from 'rxjs';
+import {Transaction} from '../../model/transaction.model';
 
 @Component({
   selector: 'wallet-details',
   templateUrl: './details.component.html'
 })
 export class DetailsComponent {
+  transactions$: Observable<Transaction[]> = this.transactionService.transactions$;
   walletForm: FormGroup = this.fb.group({
     amount: [null, Validators.required]
   });
