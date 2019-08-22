@@ -19,14 +19,18 @@ export class DetailsComponent {
               private transactionService: TransactionService) {
   }
 
+  trim2digits(n: number): number {
+    return Number(n.toString().substring(0, n.toString().indexOf('.') + 3));
+  }
+
   performTransaction(): void {
     this.totalAmountError = false;
     if (this.walletForm.valid && this.walletForm.value.amount !== 0) {
-      const value = Number(this.walletForm.value.amount.toFixed(2)); // Trim value to 2 decimal points
-      if (this.transactionService.getTotalValue() + value >= 0) {
+      const value = this.trim2digits(this.walletForm.value.amount);
+      if (this.trim2digits(this.transactionService.getTotalValue()) + value >= 0) {
         const transaction = {
           date: new Date(Date.now()).toString(),
-          amount: this.walletForm.value.amount
+          amount: value
         };
         this.transactionService.storeTransaction(transaction);
         this.walletForm.reset({amount: null});

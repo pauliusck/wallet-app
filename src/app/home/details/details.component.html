@@ -25,9 +25,10 @@
   <div class="card-body">
     <div class="card-header text-left font-weight-bold">Transaction history</div>
     <div class="row no-gutters border-bottom pt-2 pb-2"
-         *ngFor="let transaction of transactions$ | async">
+         *ngFor="let transaction of transactions$ | async | orderBy: date: reverse">
       <div class="col-6 text-left border-right pl-3">{{transaction.date| date: 'short'}}</div>
       <div class="col-6 text-left pl-3">{{transaction.amount| currency}}</div>
     </div>
+    <span *ngIf="(transactions$ | async)?.length === 0" class="text-info">There are no transactions yet.</span>
   </div>
 </div>
