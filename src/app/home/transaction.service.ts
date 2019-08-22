@@ -13,6 +13,21 @@ export class TransactionService {
   public totalAmount = 0;
 
   constructor(private localStorageService: LocalStorageService) {
+    this.transactions.next(this.getTransactions());
+  }
+
+  getTransactions(): Transaction[] {
+    const transactions: Transaction[] = this.localStorageService.getData(this.walletKey);
+    this.getTotalAmount(transactions);
+    return transactions;
+  }
+
+  getTotalAmount(transactions: Transaction[]) {
+    if (transactions.length > 0) {
+      this.totalAmount = transactions.reduce((acc, value) => acc + value.amount, 0);
+    } else {
+      this.totalAmount = 0;
+    }
   }
 
   storeTransaction(transaction: Transaction): void {
@@ -20,10 +35,13 @@ export class TransactionService {
     transactions.push(transaction);
     this.transactions.next(transactions);
     this.localStorageService.storeData(this.walletKey, transactions);
+    this.getTransactions();
   }
 
   clearTransactions(): void {
     this.localStorageService.removeData(this.walletKey);
+    this.getTransactions();
+    this.transactions.next([]);
   }
 
   getTotalValue(): number {
